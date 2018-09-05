@@ -9,5 +9,16 @@ var dashboardApp = new Vue({
   "spent" : "3456700",
   "projected_spend": "4740500",
   "weekly_effort_target": 400
+},
+computer: {
+  days_left: function() {
+    //this.target_date
+    return 31;
+  }
+},
+methods: {
+  pretty_date: function (d) {
+    return d;
+  }
 }
 })
