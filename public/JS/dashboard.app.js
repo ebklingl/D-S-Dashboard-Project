@@ -1,7 +1,7 @@
 var dashboardApp = new Vue({
   el: '#dashboard',
   data: {
-    "name" : "Tapestry",
+    name : "Tapestry",
     "short_description": "Build a visualization layer for the project dashboard",
     "start_date" : "2018-07-01",
     "target_date" : "2018-11-03",
@@ -9,8 +9,7 @@ var dashboardApp = new Vue({
     "spent" : "3456700",
     "projected_spend": "4740500",
     "weekly_effort_target": 400,
-
-  tasks: [
+    tasks: [
       {
         "id": 1,
         "title": "Build UI",
@@ -24,7 +23,6 @@ var dashboardApp = new Vue({
         "perc_complete": 95,
         "current_sprint" : true
       },
-
       {
         "id": 2,
         "title": "Update unit tests",
@@ -38,7 +36,6 @@ var dashboardApp = new Vue({
         "perc_complete": 100,
         "current_sprint" : true
       },
-
       {
         "id": 3,
         "title": "Write middleware",
@@ -66,36 +63,38 @@ var dashboardApp = new Vue({
         "current_sprint" : false
       }
     ]
-},
-computed: {
-  days_left: function() {
-    return moment(this.target_date).diff(moment(), 'days')
   },
-
-  pretty_target_date: function () {
-    return this.pretty_date(this.target_date)
-  }
-
-},
-methods: {
-  pretty_date: function (d) {
-    return moment(d).format('l')
-  },
-  
-  pretty_currency: function (val) {
-    if (val < 1e3) {
-      return '$' + val
+  computed: {
+    days_left: function () {
+      return moment(this.target_date).diff(moment(), 'days')
+    },
+    pretty_target_date: function () {
+      return this.pretty_date(this.target_date)
     }
 
-    if (val < 1e6) {
-      return '$' + (val/1e3).toFixed(1) + ' k'
-    }
-
-    return '$' + (val/1e6).toFixed(1) + 'M'
   },
+  methods: {
+    pretty_date: function (d) {
+      return moment(d).format('l')
+    },
+    pretty_currency: function (val) {
+      if (val < 1e3) {
+        return '$ ' + val
+      }
 
-  log (msg) {
-      alert(msg);
+      if (val < 1e6) {
+        return '$ ' + (val/1e3).toFixed(1) + ' k'
+      }
+
+      return '$ ' + (val/1e6).toFixed(1) + ' M'
+    },
+    completeClass: function(task) {
+      if (task.perc_complete == 100 ) {
+        return 'alert-success'
+      }
+      if (task.current_sprint && task.hours_worked == 0 ) {
+        return 'alert-warning'
+      }
+    }
   }
-}
 })
