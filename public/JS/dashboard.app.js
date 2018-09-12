@@ -29,30 +29,30 @@ var dashboardApp = new Vue({
   },
   computed: {
     days_left: function () {
-      return moment(this.project.target_date).diff(moment(), 'days')
+      return moment(this.project.target_date).diff(moment(), 'days');
     }
   },
   methods: {
     pretty_date: function (d) {
-      return moment(d).format('l')
+      return moment(d).format('l');
     },
     pretty_currency: function (val) {
       if (val < 1e3) {
-        return '$ ' + val
+        return '$ ' + val;
       }
 
       if (val < 1e6) {
-        return '$ ' + (val/1e3).toFixed(1) + ' k'
+        return '$ ' + (val/1e3).toFixed(1) + ' k';
       }
 
-      return '$ ' + (val/1e6).toFixed(1) + ' M'
+      return '$ ' + (val/1e6).toFixed(1) + ' M';
     },
     completeClass: function(task) {
       if (task.perc_complete == 100 ) {
-        return 'alert-success'
+        return 'alert-success';
       }
       if (task.current_sprint && task.hours_worked == 0 ) {
-        return 'alert-warning'
+        return 'alert-warning';
       }
     },
     fetchTasks () {
@@ -72,6 +72,9 @@ var dashboardApp = new Vue({
         console.log('PROJECT FETCH ERROR:');
         console.log(err);
       })
+    },
+    gotoTask(tid) {
+      window.location = 'task.html?taskId=' + tid;
     }
   },
   created () {
