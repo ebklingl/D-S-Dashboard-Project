@@ -1,7 +1,6 @@
 <?php
 
-class Teams
-{}
+class Teams {
 
   public static function getAll() {
     // 1. Connect to the database
@@ -21,7 +20,7 @@ class Teams
       // 4.a. For each row, make a new work object
       $teamItem =  new Team($row);
       array_push($arr, $teamItem);
-    }
+    }}
 
     // 4.b. return the array of work objects
     return $arr;
