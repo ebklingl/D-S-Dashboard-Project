@@ -7,7 +7,7 @@ class Teams {
     $db = new PDO(DB_SERVER, DB_USER, DB_PW);
 
     // 2. Prepare the query
-    $sql = 'SELECT * FROM Team';
+    $sql = 'SELECT * FROM Teams';
 
     $statement = $db->prepare($sql);
 
