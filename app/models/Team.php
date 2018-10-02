@@ -23,4 +23,4 @@ class Teams {
     }}
 
     // 4.b. return the array of work objects
-    return $arr;
+    return $arr;}
