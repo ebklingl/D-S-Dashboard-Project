@@ -67,6 +67,7 @@ var tasksApp = new Vue({
     diffAsHours() {
       return 0 //moment().duration(end.diff(startTime)).asHours();
     },
+
     getEmptyWorkForm() {
       return {
         start: moment().format('YYYY-MM-DD'),
