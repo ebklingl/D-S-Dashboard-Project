@@ -73,12 +73,42 @@ var dashboardApp = new Vue({
         console.log(err);
       })
     },
+
+    fetchProjectWork () {
+      fetch('api/workHours.php?projectId=' +pid)
+      .then( function(response) {return response.json();} )
+      .then( json => {dashboardApp.workHours = json} )
+          dashboardApp.workHours = json;
+          this.formatWorkData();
+          //TODO: this.buildEffortChart();
+        })
+      },
+      .catch( err => {
+        console.log('PROJECT FETCH ERROR:');
+        console.log(err);
+      })
+    },
+
+    formatWorkHoursData() {
+      this.workHours.forEach(
+        function(entry, index, arr) {
+          entry.date = Date.parse(entry.date);
+          entry.hours = Number(entry.hours);
+          entry.runningTotalHours = entry.hours
+          + (index == 0 ? 0 : arr[index-1].runningTotalHours)
+
+        }
+      );
+      console.log(this.workHours);
+    },
     gotoTask(tid) {
       window.location = 'task.html?taskId=' + tid;
     }
   },
   created () {
-    this.fetchProject();
-    this.fetchTasks();
+    // TODO: Get projectId from URL param
+          this.fetchProject();
+          this.fetchProjectWork(1);
+          this.fetchTasks();
   }
 })
