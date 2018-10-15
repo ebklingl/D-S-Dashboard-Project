@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 
     <title>Project Dashboard</title>
   </head>
@@ -54,8 +54,8 @@
         <div class="col placeholder" style="height:200px">
           Burndown chart goes here.
         </div>
-        <div class="col placeholder">
-          Effort chart goes here.
+        <div class="col">
+          <div id="effortChart"></div>
         </div>
       </div> <!-- end row 2, charts -->
 
@@ -78,7 +78,7 @@
                 :key="task.id"
                 :id="'task-' + task.id"
                 :class="task.current_sprint ? 'current-sprint' : '' "
-                v-on:click="gotoTask(task.id)">
+                @click="gotoTask(task.id)">
               <td>{{ task.title }}</td>
               <td>{{ task.type }}</td>
               <td>{{ task.size }}</td>
@@ -98,9 +98,16 @@
 
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="JS/dashboard.app.js"></script>
 
-    <script src="JS/tablesort.min.js"></script>
+    <!-- Load Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script src="https://code.highscarts.com/highscharts.js"></script>
+    <!-- My Vue Controller file: -->
+    <script src="js/dashboard.app.js"></script>
+
+    <!-- Table sort scripts -->
+    <script src="js/tablesort.min.js"></script>
     <script>
       // Tablesort plugin from http://tristen.ca/tablesort/demo/
       Tablesort.extend('tshirt', function(item) {
